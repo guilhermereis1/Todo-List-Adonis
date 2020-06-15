@@ -1,0 +1,36 @@
+@layout('main')
+@section('content')
+<br>
+<div class="row justify-content-between">
+  <div class="col-10">
+    <h1>{{ title }} ({{ tasks.length }}) </h1>
+  </div>
+  <div class="col-1">
+    <a href="/add" type="button" class="btn btn-outline-success">Add</a>
+
+  </div>
+</div>
+
+<br>
+<hr>
+
+@if(old('notification'))
+  <div class="alert alert-success" role="alert">
+    {{ old('notification') }}
+  </div>
+@endif
+
+<div class="list-group">
+  @each(item in tasks)
+  <a href="/task/{{ item.id }}" class="list-group-item list-group-item-action">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">{{ item.title }}</h5>
+      <small>{{ item.created_at }}</small>
+    </div>
+    <p class="mb-1">{{ item.body }}</p>
+  </a>  
+  @endeach
+</div>
+
+@endsection
+
